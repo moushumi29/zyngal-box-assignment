@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagonal Boxes</title>
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #input-container {
+            position: fixed;
+            display: block;
+            top: 0;
+            left: 0;
+        }
+        .input{
+            padding: 10px;
+            border-radius: 7px;
+            border: 1px solid black;
+        }
+        #btn {
+            margin-top: 10px;
+            cursor: pointer;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            padding: 10px;
+        }
+        #btn:hover{
+            background-color: lightblue;
+        }
+        .box {
+            position: absolute;
+            width: 100px;
+            height: 50px;
+            background-color: black;
+            transition: transform 0.5s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="input-container">
+        <input type="number" id="box-input" min="1" value="1" class="input">
+        <button id="btn" onclick="generateBoxes()">Generate</button>
+    </div>
+    <div id="box-container">
+
+    </div>
+
+    <script>
+        function generateBoxes() {
+            const boxInput = parseInt(document.getElementById('box-input').value, 10);
+
+            // Clearing the exiting box
+            document.querySelectorAll('.box').forEach(box => box.remove());
+
+            // Generating the new box
+            let innerWid = window.innerWidth;
+            let boxContainerDiv = document.getElementById('box-container');
+            console.log(innerWid)
+            for (let i = 0; i < boxInput; i++) {
+                const box = document.createElement('div');
+                box.className = 'box';
+                box.style.transform = `translate(${innerWid - (i * 100)}px, ${i * 50}px)`;
+                boxContainerDiv.appendChild(box);
+            }
+        }
+    </script>
+
+</body>
+
+</html>
